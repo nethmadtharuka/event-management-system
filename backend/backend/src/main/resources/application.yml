@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: event-management-backend
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/event_management_db?createDatabaseIfNotExist=true
+    username: root
+    password: nethma  # Change this to your MySQL password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # Automatically creates tables on startup
+    show-sql: true  # Shows SQL queries in the console
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+  security:
+    user:
+      name: admin
+      password: admin123
+
+  devtools:
+    restart:
+      enabled: true
+
+logging:
+  level:
+    com.eventmanagement: DEBUG
+    org.springframework.security: DEBUG
