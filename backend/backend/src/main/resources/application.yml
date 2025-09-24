@@ -15,7 +15,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop  # Automatically creates tables on startup
+      ddl-auto: validate  # Validate schema only; do not alter DB to avoid duplicate keys
     show-sql: true  # Shows SQL queries in the console
     properties:
       hibernate:
@@ -35,3 +35,9 @@ logging:
   level:
     com.eventmanagement: DEBUG
     org.springframework.security: DEBUG
+
+security:
+  jwt:
+    # For dev, set a strong Base64-encoded secret; override via env in prod
+    secret: ZGV2LXNlY3JldC1rZXktY2hhbmdlLW1lLXBsZWFzZS0zMis=
+    expiration-ms: 86400000
