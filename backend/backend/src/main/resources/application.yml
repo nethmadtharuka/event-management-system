@@ -15,7 +15,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate  # Validate schema only; do not alter DB to avoid duplicate keys
+      ddl-auto: update  # Dev: auto-create/migrate schema so join tables like event_vendors are created
     show-sql: true  # Shows SQL queries in the console
     properties:
       hibernate:

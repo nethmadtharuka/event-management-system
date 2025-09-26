@@ -1,6 +1,8 @@
 package com.eventmanagement.backend.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -36,6 +40,14 @@ public class Event {
     @JoinColumn(name = "created_by_id")
     private User createdBy;
 
+    @ManyToMany
+    @JoinTable(
+        name = "event_vendors",
+        joinColumns = @JoinColumn(name = "event_id"),
+        inverseJoinColumns = @JoinColumn(name = "vendor_id")
+    )
+    private Set<Vendor> vendors = new HashSet<>();
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     public String getTitle() { return title; }
@@ -50,7 +62,13 @@ public class Event {
     public void setLocation(String location) { this.location = location; }
     public User getCreatedBy() { return createdBy; }
     public void setCreatedBy(User createdBy) { this.createdBy = createdBy; }
+    public Set<Vendor> getVendors() { return vendors; }
+    public void setVendors(Set<Vendor> vendors) { this.vendors = vendors; }
 }
+
+
+
+
 
 
 
